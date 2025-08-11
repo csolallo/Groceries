@@ -2,10 +2,10 @@
 To use the Google Keep API, we will set up a service account that can impersonate a workspace user and request an access token with the three scopes needed to use the Keep API.
 
 Google version of the above is
-```
-For authorization, you can use domain-wide delegation using a service account or an OAuth client ID. Domain-wide delegation with a service account is a powerful feature where the service account can impersonate any user in the domain without manual authorization on their part
-```
-
+>  
+> For authorization, you can use domain-wide delegation using a service account or an OAuth client ID. Domain-wide delegation with a service account is a powerful feature where the service account can impersonate any user in the domain without manual authorization on their part
+>
+> 
 ### Out of Scope
 
 The following are pre​req​ui​sites and not covered here:  
