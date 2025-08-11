@@ -90,9 +90,28 @@ Our admin can now disable the policy that is in effect preventing us from creati
 Credit where credit is due. This stumped me. Were it not for Zalamit's summary in [this reddit thread](https://www.reddit.com/r/googleworkspace/comments/1biw03d/service_account_key_creation_is_disabled/), I probably would have given up.
 
 #### Step 5: Create a private key for the sa  
+1. In [Google Cloud Console](https://console.cloud.com), use the left nav to `Service Accounts`
 
+2. Find the sa, select it, and create a JSON key. If Google prevents it, then Step 4 is incomplete and I'll need to update it.
+
+3. The downloaded key will be used by our cli scripts.
 
 #### Step 6: ensure the sa can request access tokens with the correct scopes  
-mno
+1. Log into the [Workspace Admin Console](https://admin.google.com/)
+
+2. Select `Security`
+
+3. Select `Access and Data Control`
+
+4. Select `API Controls`
+
+5. Click the "Manage Domain Wide Delegation" button
+
+6. Add the client id for the sa
+
+7. Ensure we add the scopes needed by Keep:
+> https://www.googleapis.com/auth/keep
+> https://www.googleapis.com/auth/keep.readonly
+> https://www.googleapis.com/auth/userinfo.email
 
 
