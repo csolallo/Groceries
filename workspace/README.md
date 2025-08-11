@@ -11,6 +11,8 @@ Google version of the above is
 The following are pre​req​ui​sites and not covered here:  
 * Creating a Google Workspace
 * Creating a GCP project in that workspace
+* Ensuring the project has the Keep APIs added to it. See [here](https://console.cloud.google.com/apis)
+
 
 ### Overview
 
