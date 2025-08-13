@@ -18,4 +18,19 @@ describe "input parser" do
       expect(output.count).to eq(2) 
     end
   end
+
+  context 'conjunctions' do
+    it 'should handle splitting items joined by conjunctions with oxford comma' do
+      output = parse('./samples/conjunctions_oxford.txt')
+      expect(output.count).to eq(4)
+      expect(output[-1]).to eq('sparkling water')
+    end
+
+    it 'should handle splitting items joined by conjunctions with oxford comma' do
+      output = parse('./samples/conjunctions.txt')
+      expect(output.count).to eq(4)
+      expect(output[-2]).to eq('flour')
+      expect(output[-1]).to eq('sparkling water')
+    end
+  end
 end
