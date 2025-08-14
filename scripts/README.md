@@ -1,3 +1,6 @@
+### SSL Issues
+#### certificate verify failed (unable to get local issuer certificate)
+
 In ChromeOS Debian containers, the OpenSSL gem may not be able to find certs. This will affect the ability to auth against the Google APIs.
 
 To test this you can run
@@ -24,3 +27,10 @@ Running
 SSL_CERT_DIR=/usr/lib/ssl SSL_CERT_FILE=/usr/lib/ssl/cert.pem bundle doctor --ssl
 ```
 Will now return okay. 
+
+
+### Ignore changes to .env
+After cloning repo, issue:
+```
+git update-index --assume-unchanged .env
+```
