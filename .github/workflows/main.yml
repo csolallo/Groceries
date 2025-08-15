@@ -45,7 +45,7 @@ jobs:
           token: ${{secrets.GHAKEY}}
       - name: update README.md
         run: |
-          echoe "${ARCH_URL}"
+          echo "${ARCH_URL}"
           sed "s/<PUT IT HERE>/${ARCH_URL}/" scripts/README.template > scripts/README.md
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
