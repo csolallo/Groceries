@@ -46,11 +46,6 @@ jobs:
       - name: update README.md
         run: |
           echo "${ARCH_URL}"
-          sed "s/<PUT IT HERE>/${ARCH_URL}/" scripts/README.template > scripts/README.md
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git config user.name "github-actions[bot]"
-          git commit -am "README update"
-          git push
 
 
             
