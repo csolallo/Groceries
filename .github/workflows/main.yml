@@ -16,5 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     if: (github.event.pull_request.merged == true) || (inputs.manual_trigger == true)
     steps:
+    - uses: actions/checkout@v5
     - run: |
-        echo "HERE"
+        git archive --worktree-attributes --format=tar.gz -o "./out/archive.tar.gz" HEAD scripts
+  
