@@ -3,12 +3,18 @@ on:
     branches: [main]
     types: [closed]
   workflow_dispatch:
+    # inputs:
+    #   manual_trigger:
+    #     description: "To distinguish workflow_call from regular push"
+    #     type: boolean
+    #     required: false
+    #     default: true      
   
 jobs:
   create_archive_job:
     name: create an archive
     runs-on: ubuntu-latest
-    # if: github.event.pull_request.merged == true
+    if: (github.event.pull_request.merged == true) || (githubb.event.workflow_dispatch)
     steps:
     - run: |
         echo "HERE"
