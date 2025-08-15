@@ -5,18 +5,18 @@ require_relative 'lib/keep'
 
 def validate_args(argv)
   if argv.size != 1
-    return [flase, 'grocery list file path required']
+    return [-1, 'grocery list file path required']
   end
 
   input_file = argv[0]
   unless File.exist? input_file
-    return [false, "#{input_file} not found"]
+    return [-1, "#{input_file} not found"]
   end
 
-  return [true, nil]
+  return [0, nil]
 end
 
-def main(arv)
+def main(argv)
   Dotenv.load
   
   credentials = Groceries::user_credentials(
@@ -27,8 +27,7 @@ def main(arv)
   list = Groceries::List.new(credentials, ENV['GROCERY_LIST_NAME'])
   uniques = Set.new(list.get_items)
 
-  # TODO actually get items from input file
-  new_items = ['Tomatoes', 'Apples', 'Bananas']
+  new_items = parse(argv[0])
 
   new_items.collect { |item| uniques << item }
   puts uniques
@@ -39,7 +38,7 @@ end
 (err_code, err_msg) = *validate_args(ARGV)
 if err_code != 0
   STDERR.puts err_msg
-  exit(-1)  
+  exit(err_code)  
 end
 
 main(ARGV)
