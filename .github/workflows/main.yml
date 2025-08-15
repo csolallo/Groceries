@@ -16,8 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     if: (github.event.pull_request.merged == true) || (inputs.manual_trigger == true)
     steps:
-    - uses: actions/checkout@v5
-    - run: |
-        mkdir out
-        git archive --worktree-attributes --format=tar.gz -o "./out/archive.tar.gz" HEAD scripts
-  
+      - name: pull down repository
+        uses: actions/checkout@v5
+      - name: create the script archive file
+        run: |
+          mkdir out
+          git archive --worktree-attributes --format=tar.gz -o "./out/archive.tar.gz" HEAD scripts
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: archive.tar.gz
+          path: |
+            out
+            
