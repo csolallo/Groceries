@@ -37,4 +37,4 @@ git update-index --assume-unchanged .env
 
 ### Archives
 
-[Current scripts archive](-URL)
+[Current scripts archive](URL)
