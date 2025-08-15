@@ -1,0 +1,14 @@
+on: 
+  pull_request:
+    branches: [main]
+    types: [closed]
+  workflow_dispatch:
+  
+jobs:
+  create_archive_job:
+    name: create an archive
+    runs_on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+    - run: |
+        echo "HERE"
