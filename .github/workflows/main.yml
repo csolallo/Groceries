@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: create_archive_job
     env: 
-      ARCH-URL: ${{needs.job1.outputs.archive-url}}
+      ARCH-URL: ${{needs.create_archive_job.outputs.archive-url}}
     steps:
       - name: pul down repository
         uses: actions/checkout@v5
