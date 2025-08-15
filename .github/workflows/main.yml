@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: create_archive_job
     env: 
-      ARCH-URL: ${{needs.create_archive_job.outputs.archive-url}}
+      ARCH_URL: ${{needs.create_archive_job.outputs.archive-url}}
     steps:
       - name: pul down repository
         uses: actions/checkout@v5
@@ -45,7 +45,8 @@ jobs:
           token: ${{secrets.GHAKEY}}
       - name: update README.md
         run: |
-          sed "s/<PUT IT HERE>/${ARCH-URL}/" scripts/README.template > scripts/README.md
+          echoe "${ARCH-URL}"
+          sed "s/<PUT IT HERE>/${ARCH_URL}/" scripts/README.template > scripts/README.md
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git config user.name "github-actions[bot]"
           git commit -am "README update"
