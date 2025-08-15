@@ -47,7 +47,7 @@ module Groceries
     def get_items
       with_authorized_service do |s|
         response = s.list_notes
-        return [] if response.notes.nil? # workplace user has no notes
+        return [] if response.notes.nil? # workspace user has no notes
 
         note = response.notes.find { |n| n.title == @list_name }
         items = []
