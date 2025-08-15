@@ -18,5 +18,6 @@ jobs:
     steps:
     - uses: actions/checkout@v5
     - run: |
+        mkdir out
         git archive --worktree-attributes --format=tar.gz -o "./out/archive.tar.gz" HEAD scripts
   
