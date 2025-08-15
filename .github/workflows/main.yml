@@ -7,7 +7,7 @@ on:
 jobs:
   create_archive_job:
     name: create an archive
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
     - run: |
