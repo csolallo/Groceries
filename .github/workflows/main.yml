@@ -14,6 +14,8 @@ jobs:
   create_archive_job:
     name: create an archive
     runs-on: ubuntu-latest
+    outputs:
+      archive-url: ${{ steps.artifact-upload-step.outputs.artifact-url }}
     if: (github.event.pull_request.merged == true) || (inputs.manual_trigger == true)
     steps:
       - name: pull down repository
@@ -23,9 +25,29 @@ jobs:
           mkdir out
           git archive --worktree-attributes --format=tar.gz -o "./out/archive.tar.gz" HEAD scripts
       - name: Archive production artifacts
+        id: artifact-upload-step 
         uses: actions/upload-artifact@v4
         with:
           name: archive.tar.gz
           path: |
             out
+
+  update_readme:
+    name: update the readme file with link to latest archive
+    runs-on: ubuntu-latest
+    needs: create_archive_job
+    env: 
+      ARCH-URL: ${{needs.job1.outputs.archive-url}}
+    steps:
+      - name: pul down repository
+        uses: actions/checkout@v5
+      - name: update README.md
+        run: |
+          sed 's/<PUT IT HERE>/${{ARCH-URL}}/' scripts/README.template > scripts/README.md
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git commit -am "README update"
+          git push
+
+
             
