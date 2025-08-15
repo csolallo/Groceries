@@ -41,6 +41,8 @@ jobs:
     steps:
       - name: pul down repository
         uses: actions/checkout@v5
+        with:
+          token: ${{secrets.GHAKEY}}
       - name: update README.md
         run: |
           sed 's/<PUT IT HERE>/$ARCH-URL/' scripts/README.template > scripts/README.md
