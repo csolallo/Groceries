@@ -1,4 +1,5 @@
 require 'dotenv'
+require 'set'
 require_relative 'lib/input_parser'
 require_relative 'lib/keep'
 
@@ -10,8 +11,12 @@ credentials = Groceries::user_credentials(
 )
 
 list = Groceries::List.new(credentials, ENV['GROCERY_LIST_NAME'])
-list.save(['Tomatoes', 'Apples', 'Bananas'])
+uniques = Set.new(list.get_items)
 
-list = Groceries::List.new(credentials, ENV['GROCERY_LIST_NAME'])
-items = list.get_items
-puts items
+# TODO actually get items from input file
+new_items = ['Tomatoes', 'Apples', 'Bananas']
+
+new_items.collect { |item| uniques << item }
+puts uniques
+
+list.save(uniques.to_a).share_with(ENV['USER_TO_INVITE'])
