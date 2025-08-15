@@ -3,6 +3,19 @@ require 'set'
 require_relative 'lib/input_parser'
 require_relative 'lib/keep'
 
+def validate_args(argv)
+  if argv.size != 1
+    return [flase, 'grocery list file path required']
+  end
+
+  input_file = argv[0]
+  unless File.exist? input_file
+    return [false, "#{input_file} not found"]
+  end
+
+  return [true, nil]
+end
+
 def main(arv)
   Dotenv.load
   
@@ -23,10 +36,10 @@ def main(arv)
   list.save(uniques.to_a).share_with(ENV['USER_TO_INVITE'])  
 end
 
-if ARGV.size != 2
-  STDERR.puts 'grocery list file path required'
-  exit(-1)
+(err_code, err_msg) = *validate_args(ARGV)
+if err_code != 0
+  STDERR.puts err_msg
+  exit(-1)  
 end
 
-ARGV.shift
 main(ARGV)
