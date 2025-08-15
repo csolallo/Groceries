@@ -11,7 +11,7 @@ on:
         default: true      
   
 jobs:
-  create_archive_job:
+  create_archive:
     name: create an archive
     runs-on: ubuntu-latest
     outputs:
@@ -35,9 +35,9 @@ jobs:
   update_readme:
     name: update the readme file with link to latest archive
     runs-on: ubuntu-latest
-    needs: create_archive_job
+    needs: create_archive
     env: 
-      ARCH_URL: ${{needs.create_archive_job.outputs.archive-url}}
+      ARCH_URL: ${{needs.create_archive.outputs.archive-url}}
     steps:
       - name: pul down repository
         uses: actions/checkout@v5
