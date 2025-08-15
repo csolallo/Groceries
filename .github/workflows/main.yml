@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
     inputs:
       manual_trigger:
-        description: "To distinguish workflow_call from regular push"
+        description: "To distinguish workflow_dispatch from merged and closed PR"
         type: boolean
         required: false
         default: true      
