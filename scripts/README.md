@@ -37,4 +37,6 @@ git update-index --assume-unchanged .env
 
 ### Archives
 
+This shouldn't affect anything
+
 [Current scripts archive](https://github.com/csolallo/Groceries/actions/runs/17001968487/artifacts/3777976605)
