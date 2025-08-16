@@ -9,20 +9,23 @@ name: run-specs
 on:
   push:
     paths: 
+      - 
       - 'scripts/**'
       - '!scripts/**/*.md'
+  
 jobs:
   test:
+    name: run tests
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     
-    - name: Set up Ruby
+    - name: set up Ruby
       uses: ruby/setup-ruby@v1
       with:
         ruby-version: 3.4.5
         bundler-cache: false
-    - name: Run tests
+    - name: run all specs
       run: |
         cd scripts
         bundle install
