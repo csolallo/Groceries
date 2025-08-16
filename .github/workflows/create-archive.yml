@@ -1,3 +1,5 @@
+name: create scripts archive
+
 on: 
   pull_request:
     branches: [main]

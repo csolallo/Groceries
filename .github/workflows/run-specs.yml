@@ -5,7 +5,8 @@
 # This workflow will download a prebuilt Ruby version, install dependencies and run tests with Rake
 # For more information see: https://github.com/marketplace/actions/setup-ruby-jruby-and-truffleruby
 
-name: run-specs
+name: run all specs
+
 on:
   push:
     paths: 
@@ -13,8 +14,8 @@ on:
       - '!scripts/**/*.md'
   
 jobs:
-  test:
-    name: run tests
+  build-and-run-tests:
+    name: run bundler and execute specs
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
