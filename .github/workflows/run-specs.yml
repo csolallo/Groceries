@@ -8,7 +8,10 @@
 name: run-specs
 on:
   push:
-    paths: 'scripts/**'
+    paths: 
+      - 'scripts/**'
+      - '!*.md'
+
 jobs:
   test:
     runs-on: ubuntu-latest
