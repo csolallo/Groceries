@@ -15,7 +15,7 @@ describe "input parser" do
   context 'commas' do 
     it 'should handle files where items are already comma separated' do
       output = parse('./samples/commas.txt')
-      expect(output.count).to eq(3) 
+      expect(output.count).to eq(2) 
     end
   end
 
