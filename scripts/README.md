@@ -35,6 +35,11 @@ After cloning repo, issue:
 git update-index --assume-unchanged .env
 ```
 
+### References
+
+* [Keep API Documentation](https://developers.google.com/workspace/keep)
+* [Keep Ruby API Source](https://github.com/googleapis/google-api-ruby-client/tree/main/generated/google-apis-keep_v1)
+
 ### Archives
 
 [Current scripts archive](https://github.com/csolallo/Groceries/actions/runs/17001968487/artifacts/3777976605)
