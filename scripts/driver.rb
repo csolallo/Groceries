@@ -3,7 +3,7 @@ require 'set'
 require_relative 'lib/input_parser'
 require_relative 'lib/keep'
 
-# 1
+# 2
 #
 def validate_args(argv)
   if argv.size != 1
