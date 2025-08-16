@@ -14,7 +14,7 @@ on:
   
 jobs:
   build-and-run-tests:
-    name: run tests
+    name: run bundler and execute specs
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
