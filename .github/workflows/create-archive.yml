@@ -39,7 +39,7 @@ jobs:
     env: 
       ARCH_URL: ${{needs.create_archive.outputs.archive-url}}
     steps:
-      - name: pul down repository
+      - name: pull down repository
         uses: actions/checkout@v5
         with:
           token: ${{secrets.GHAKEY}}
