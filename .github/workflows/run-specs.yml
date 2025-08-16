@@ -9,7 +9,6 @@ name: run-specs
 on:
   push:
     paths: 
-      - 
       - 'scripts/**'
       - '!scripts/**/*.md'
   
