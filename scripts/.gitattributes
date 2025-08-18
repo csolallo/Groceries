@@ -1,5 +1,5 @@
 .vscode export-ignore
-.gitignore export-ignore
+.git* export-ignore
 samples export-ignore
 specs export-ignore
 README.* export-ignore
