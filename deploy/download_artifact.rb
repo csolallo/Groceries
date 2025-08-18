@@ -4,18 +4,17 @@ require 'json'
 require 'net/https'
 require 'open-uri'
 
+RESPONSE_TEMPLATE = {
+  "headers" => {},
+  "body"    => {}
+}
+
 # on expected responses, returns json shaped like
 # {
 #   headers: {}
 #   body: {}
 # }
 # will raise StandardError on unexpected responses
-
-RESPONSE_TEMPLATE = {
-  "headers" => {},
-  "body"    => {}
-}
-
 def fetch(token, url, ca_path='/usr/lib/ssl', ca_file='/usr/lib/ssl/cert.pem')
   uri = URI.parse(url)
   request = Net::HTTP.new(uri.host, 443)
