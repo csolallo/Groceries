@@ -17,8 +17,9 @@ With Termux installed, we now install the following termux plugins using F-Droid
 We'll install these additional packages in our linux environment:
 * git 
 * ruby
-* vim
 * termux-api (the plugin requies it)
+* vim
+* wget
 
 #### References ####
 [This git page](https://gist.github.com/txoof/f7670b80e983582f7af6d1a7791c15ab) was a huge help in figuring out what I needed.
