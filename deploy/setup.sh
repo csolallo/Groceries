@@ -73,25 +73,21 @@ build_script_folder() {
 # $1 : working folder
 # $2 : destination folder
 move_to_destination() {
-    mkdir -p $2/bin && cp -a $1/scripts/. $2/bin
+    mkdir -p $2/groceries && cp -a $1/scripts/. $2/groceries
 }
 
 # $1 : destination folder
 create_helper_script() {
-    pushd $1 > /dev/null
-
     sc=$(cat <<EOF
 #!/usr/bin/env bash
 
-pushd ./bin > /dev/null
+pushd ./groceries > /dev/null
 SSL_CERT_DIR=${SSL_CERT_DIR} SSL_CERT_FILE=${SSL_CERT_FILE} bundle exec ruby driver.rb \$1
 popd > /dev/null
 EOF
 )
-    echo "$sc" > runner.sh
-    chmod +x runner.sh
-
-    popd > /dev/null
+    echo "$sc" > groceries.sh
+    chmod +x groceries.sh
 }
 
 while getopts "w:d:hv" opt; do
