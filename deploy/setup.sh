@@ -81,7 +81,7 @@ create_helper_script() {
     sc=$(cat <<EOF
 #!/usr/bin/env bash
 
-pushd ./groceries > /dev/null
+pushd $1/groceries > /dev/null
 SSL_CERT_DIR=${SSL_CERT_DIR} SSL_CERT_FILE=${SSL_CERT_FILE} bundle exec ruby driver.rb \$1
 popd > /dev/null
 EOF
