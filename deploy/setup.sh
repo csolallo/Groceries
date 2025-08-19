@@ -41,7 +41,7 @@ setup_working_dir() {
     if [ "$verbose" == "1" ]; then
         echo "$download_token"
     fi
-    TOKEN="$download_token" SSL_CERT_DIR="/data/data/com.termux/files/usr/etc/tls" SSL_CERT_FILE="/data/data/com.termux/files/usr/etc/tls/cert.pem" ruby ./download_artifact.rb
+    TOKEN="$download_token" SSL_CERT_DIR="$SSL_CERT_DIR" SSL_CERT_FILE="${SSL_CERT_FILE}" ruby ./download_artifact.rb
 
     popd
 
@@ -84,7 +84,7 @@ create_helper_script() {
 #!/usr/bin/env bash
 
 pushd ./bin > /dev/null
-SSL_CERT_DIR=/usr/lib/ssl SSL_CERT_FILE=/usr/lib/ssl/cert.pem bundle exec ruby driver.rb \$1
+SSL_CERT_DIR=${SSL_CERT_DIR} SSL_CERT_FILE=${SSL_CERT_FILE} bundle exec ruby driver.rb \$1
 popd > /dev/null
 EOF
 )
