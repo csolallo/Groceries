@@ -9,7 +9,7 @@ cleanup() {
 }
 
 usage() {
-    echo "Usage $0 [-v] -w working_dir -d destination dir"
+    echo "Usage $0 [-v] -w working directory -d destination directory"
 }
 
 # $1 : working folder
@@ -36,9 +36,9 @@ setup_working_dir() {
     rm -rf ./Keys-and-Tokens
 
     download_token=$(awk -f parse_token_file.awk -v token=archive-download tokens.txt)
-    # echo if -v
-    echo $download_token
-
+    if [ "$verbose" == "1" ]; then
+        echo "$download_token"
+    fi
     TOKEN="$download_token" ruby ./download_artifact.rb
 
     popd
@@ -92,23 +92,45 @@ EOF
     popd > /dev/null
 }
 
+while getopts "w:d:hv" opt; do
+    case "$opt" in
+        w) 
+        working=$OPTARG
+        ;;
+        d)
+        dest=$OPTARG
+        ;;
+        v)
+        verbose=1
+        ;;
+        h)
+        usage
+        exit 0
+        ;;
+    esac
+done
+
+if [ -z "$working" -o -z "$dest" ]; then
+    exit -1
+fi
+
 echo "Step 1: download scripts, artifact, and keys into working folder" 
 echo "----------------------------------------------------------------"
-setup_working_dir ./working
+setup_working_dir "$working"
 if [[ $? -ne 0 ]]; then
-   cleanup ./working
+   cleanup "$working"
    exit -1
 fi
 
 echo "Step 2: download gem dependencies"
 echo "----------------------------------------------------------------"
-build_script_folder ./working
+build_script_folder "$working"
 
 echo "Step 3: move script folder to destination directory"
 echo "----------------------------------------------------------------"
-move_to_destination ./working ./dist
-create_helper_script ./dist
+move_to_destination "$working" "$dest"
+create_helper_script "$dest"
 echo "Done"
 
-cleanup ./working
+cleanup "$working"
 
