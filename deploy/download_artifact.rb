@@ -15,12 +15,13 @@ RESPONSE_TEMPLATE = {
 #   body: {}
 # }
 # will raise StandardError on unexpected responses
-def fetch(token, url, ca_path='/usr/lib/ssl', ca_file='/usr/lib/ssl/cert.pem')
+def fetch(token, url)
   uri = URI.parse(url)
   request = Net::HTTP.new(uri.host, 443)
   request.use_ssl = true
-  request.ca_path = ca_path
-  request.ca_file = ca_file
+  request.ca_path = ENV['SSL_CERT_DIR'] || '/usr/lib/ssl'
+  request.ca_file = ENV['SSL_CERT_FILE'] || '/usr/lib/ssl/cert.pem'
+  
   headers = {
     "Accept" => "application/vnd.github+json",
     "Authorization" => "Bearer #{token}" 

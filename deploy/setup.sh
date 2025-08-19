@@ -33,13 +33,15 @@ setup_working_dir() {
     # download keys from github (you'll need the id_ed25519 ssh deploy key set up)
     git clone git@github.com:csolallo/Keys-and-Tokens.git
     mv ./Keys-and-Tokens/Groceries/* ./Keys-and-Tokens/Groceries/.* .
+
+
     rm -rf ./Keys-and-Tokens
 
     download_token=$(awk -f parse_token_file.awk -v token=archive-download tokens.txt)
     if [ "$verbose" == "1" ]; then
         echo "$download_token"
     fi
-    TOKEN="$download_token" ruby ./download_artifact.rb
+    TOKEN="$download_token" SSL_CERT_DIR="/data/data/com.termux/files/usr/etc/tls" SSL_CERT_FILE="/data/data/com.termux/files/usr/etc/tls/cert.pem" ruby ./download_artifact.rb
 
     popd
 
