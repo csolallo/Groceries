@@ -25,7 +25,7 @@ def main(argv)
   )
 
   list = Groceries::List.new(credentials, ENV['GROCERY_LIST_NAME'])
-  uniques = Set.new(list.get_items)
+  uniques = list.get_items.inject(Set.new([])) { |set, item| set << item if not item.nil?; set }
 
   new_items = parse(argv[0])
 
