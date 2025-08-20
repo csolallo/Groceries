@@ -79,13 +79,18 @@ move_to_destination() {
 # $1 : destination folder
 create_helper_script() {
     sc=$(cat <<EOF
-#!/usr/bin/env bash
+#!/data/data/com.termux/files/usr/bin/bash
 
-pushd $1/groceries > /dev/null
+pushd ~/.termux/tasker/groceries > /dev/null
 SSL_CERT_DIR=${SSL_CERT_DIR} SSL_CERT_FILE=${SSL_CERT_FILE} bundle exec ruby driver.rb \$1
 popd > /dev/null
+
+rm /data/data/com.termux/files/home/storage/shared/Documents/Xfer/copied-*
 EOF
 )
+    if [ "$verbose" == "1" ]; then
+        echo "$sc"
+    fi
     echo "$sc" > groceries.sh
     chmod +x groceries.sh
 }
