@@ -42,4 +42,4 @@ git update-index --assume-unchanged .env
 
 ### Archives
 
-[Current scripts archive](https://github.com/csolallo/Groceries/actions/runs/17010693077/artifacts/3780232588)
+[Current scripts archive](https://github.com/csolallo/Groceries/actions/runs/17104631525/artifacts/3810978530)
