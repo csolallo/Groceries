@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: pull down repository
         uses: actions/checkout@v5
+        with:
+          path: main
       - name: create the script archive file
         run: |
           mkdir out
