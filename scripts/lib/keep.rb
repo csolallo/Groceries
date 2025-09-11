@@ -54,8 +54,9 @@ module Groceries
         unless note.nil?
           @note = note
 
-          # TODO validate that the note is actually a list
-          items = note.body.list.list_items.inject([]) { |lst, item| lst << item.text.text} 
+          unless note.body.list.list_items.nil?
+            items = note.body.list.list_items.inject([]) { |lst, item| lst << item.text.text}
+          end 
         end
         return items
       end
