@@ -85,7 +85,7 @@ pushd ~/.termux/tasker/groceries > /dev/null
 SSL_CERT_DIR=${SSL_CERT_DIR} SSL_CERT_FILE=${SSL_CERT_FILE} bundle exec ruby driver.rb \$1
 popd > /dev/null
 
-rm /data/data/com.termux/files/home/storage/shared/Documents/Xfer/copied-*
+rm -f /data/data/com.termux/files/home/storage/shared/Documents/Xfer/copied-*
 EOF
 )
     if [ "$verbose" == "1" ]; then
