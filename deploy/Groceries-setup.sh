@@ -3,12 +3,6 @@
 
 # $1 : working dir
 prepare_app_build() {
-    # pushd $1 > /dev/null
-
-    rm -r scripts 2> /dev/null # sanity check
-    unzip archive.tar.gz.zip
-    tar -xvf archive.tar.gz
-
     cp *-key.json ./scripts
     cp .env ./scripts
 
@@ -19,7 +13,6 @@ prepare_app_build() {
     popd > /dev/null
 
     create_helper_script
-    #popd > /dev/null
 }
 
 # $1 : destination folder
